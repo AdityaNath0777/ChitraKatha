@@ -1,3 +1,15 @@
+# ChitraKatha
+
+Re-imagining the Panchtantra Fables in Visual Novel (VN) style story-telling. As a child you would have always wondered why that character did that 🤨, why this character taking such an obviously wrong decision 🤦🏻‍♂️, etc. All these choices often might lead to an enitrely different ending of the story.
+
+In this VN, the user can take different routes that after branching from the original story's timeline may or may not converge into the original timeline leading to possiblity of different choices but either same, similar, or an enitrely different ending of the story.
+
+Relive the childhood nostalgia and moral values through this project, ChitraKatha
+
+PS: _Fables_ are short, fictional stories, often featuring animals or inanimate objects that are anthropomorphized (given human characteristics), designed to teach a moral or lesson.
+
+## Installation
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
