@@ -1,6 +1,6 @@
 import Image from "next/image";
 import StoryCardList from "./_components/story-card-list";
-import { storiesService } from "@/lib/stories.service";
+import { storiesService } from "@/lib/services/stories.service";
 
 export default async function Home() {
   let stories;

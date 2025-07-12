@@ -46,7 +46,7 @@ export const stories: StoryCollection = {
 };
 
 export function getAllStories() {
-  return Object.values(stories);
+  return stories;
 }
 
 export function getStoryById(id: string) {
