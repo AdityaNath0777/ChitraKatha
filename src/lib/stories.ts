@@ -1,4 +1,5 @@
 import { StoryCollection } from "@/types/stories";
+import { StoryEntry } from "./schema/stories";
 
 export const stories: StoryCollection = {
   "monkey-and-crocodile": {
@@ -49,6 +50,16 @@ export function getAllStories() {
   return stories;
 }
 
-export function getStoryById(id: string) {
-  return stories[id];
+const stroiesSlugIdMap: Record<string, string> = {};
+Object.keys(stories).forEach(
+  (slug) => (stroiesSlugIdMap[stories[slug].id] = slug)
+);
+
+export function getStoryById(id: string): StoryEntry {
+  const slug = stroiesSlugIdMap[id];
+  return stories[slug] ?? {};
+}
+
+export function getStoryBySlug(slug: string): StoryEntry {
+  return stories[slug];
 }
