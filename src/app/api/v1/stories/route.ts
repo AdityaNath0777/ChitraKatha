@@ -1,9 +1,10 @@
 import { getAllStories } from "@/lib/stories";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
     const stories = getAllStories();
-    return Response.json(stories);
+    return NextResponse.json(stories);
   } catch (error) {
     console.error(
       `Failed to fetch all the stories:: ${

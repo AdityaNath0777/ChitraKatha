@@ -12,7 +12,7 @@ interface StoryCardListProps {
 
 function StoryCardItem({ story }: StoryCardItemProps) {
   return (
-    <li className="story-card-item scale-95 hover:scale-100 duration-200 max-w-2xl space-y-3 ring-3 rounded ring-white px-6 py-4 max-h-[16rem]">
+    <li className="story-card-item scale-95 hover:scale-100 duration-200 max-w-2xl space-y-3 ring-3 rounded ring-primary dark:ring-white px-6 py-4 max-h-[16rem]">
       <article>
         <Link
           href={`/stories/${story.slug}`}
