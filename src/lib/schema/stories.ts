@@ -7,7 +7,11 @@ export const storyEntryPreviewSchema = z.object({
   title: z.string(),
   description: z.string(),
 });
-export const storyEntrySchema = storyEntryPreviewSchema; // will extend soon
+
+export const storyEntrySchema = storyEntryPreviewSchema.extend({
+  characters: z.array(z.string()),
+  data: z.object().optional(),
+}); // will extend soon
 
 // collections
 export const storyCollectionSchema = z.record(z.string(), storyEntrySchema);
