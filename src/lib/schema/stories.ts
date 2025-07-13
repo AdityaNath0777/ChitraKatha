@@ -13,7 +13,7 @@ export const sceneSchema = z.object({
   choices: z.array(choiceSchema),
 });
 
-export const storyData = z.record(z.string(), sceneSchema);
+export const storyDataSchema = z.record(z.string(), sceneSchema);
 
 // entries
 export const storyEntryPreviewSchema = z.object({
@@ -27,7 +27,7 @@ export const storyEntryPreviewSchema = z.object({
 export const storyEntrySchema = storyEntryPreviewSchema.extend({
   characters: z.array(z.string()),
   startSceneId: z.string(),
-  data: storyData,
+  data: storyDataSchema,
 }); // will extend soon
 
 // collections
@@ -38,6 +38,10 @@ export const storyCollectionPreviewSchema = z.record(
 );
 
 // types
+export type Choice = z.infer<typeof choiceSchema>;
+export type Scene = z.infer<typeof sceneSchema>;
+export type StoryData = z.infer<typeof storyDataSchema>;
+
 export type StoryEntryPreview = z.infer<typeof storyEntryPreviewSchema>;
 export type StoryCollectionPreview = z.infer<
   typeof storyCollectionPreviewSchema
