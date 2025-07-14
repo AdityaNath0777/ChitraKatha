@@ -1,36 +1,50 @@
 "use client";
 
 import React from "react";
-import {
-  ContinueButton,
-  GoToMainMenuButton,
-  PrevButton,
-  StartStoryButton,
-} from "./story-buttons";
+import { GoToMainMenuButton, RestartButton } from "./story-buttons";
 import { StoryEntry } from "@/lib/schema/stories";
+import DialogueBox from "./dialogue-box";
+import ChoiceBox from "./choice-box";
+import { useStoryEngine } from "@/hooks/useStoryEngine";
+import SceneIntro from "./scene-intro";
+import SceneHeader from "./scene-header";
 
 function StoryViewer({ story }: { story: StoryEntry }) {
+  const {
+    sceneId,
+    dialogueEnd,
+    currentScene,
+    start,
+    pickChoice,
+    onDialogueEnd,
+  } = useStoryEngine(story);
+
   return (
-    <div className="story-viewer-container w-full flex flex-col gap-4 max-w-4xl">
-      <GoToMainMenuButton />
-
-      <div>
-        {story.characters.map((char, idx) => (
-          <span key={`story-char-${idx}`} className="text-9xl">
-            {char}
-          </span>
-        ))}
-      </div>
-      <p>{story.description}</p>
-
-      <div className="flex items-center justify-center w-full">
-        <StartStoryButton onStart={() => {}} />
+    <div className="story-viewer-container w-full h-full flex flex-col gap-4 max-w-6xl mx-auto">
+      <div className="flex gap-2">
+        <GoToMainMenuButton />
+        {sceneId && <RestartButton onRestart={start} />}
       </div>
 
-      <div className="w-full flex justify-between gap-4">
-        <PrevButton onPrev={() => {}} />
-        <ContinueButton onContinue={() => {}} />
-      </div>
+      {!sceneId && <SceneIntro story={story} onStart={start} />}
+
+      {sceneId.length > 0 && (
+        <div className={`relative h-48 lg:h-72 w-full p-2 ${currentScene.background}  rounded-md`}>
+          <SceneHeader faded={dialogueEnd}>
+            {currentScene?.character || ""}
+          </SceneHeader>
+
+          {dialogueEnd && currentScene.choices.length > 0 && (
+            <div className="absolute inset-0">
+              <ChoiceBox choices={currentScene.choices} onChoice={pickChoice} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {currentScene && (
+        <DialogueBox chunks={currentScene.textChunks} onEnd={onDialogueEnd} />
+      )}
     </div>
   );
 }

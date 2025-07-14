@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import {
   PlayIcon,
+  RotateCcwIcon,
   SquareMenuIcon,
   StepBackIcon,
   StepForwardIcon,
@@ -12,13 +13,20 @@ export function GoToMainMenuButton({
   children,
   href = "/",
   onBeforeNavigate = () => {},
+  ...rest
 }: {
   children?: React.ReactNode;
   href?: string;
   onBeforeNavigate?: () => void;
 }) {
   return (
-    <Button size={"lg"} onClick={onBeforeNavigate} asChild className="w-30">
+    <Button
+      size={"lg"}
+      onClick={onBeforeNavigate}
+      {...rest}
+      asChild
+      className="w-30"
+    >
       <Link href={href}>
         <SquareMenuIcon />
         {children || "Main Menu"}
@@ -30,30 +38,45 @@ export function GoToMainMenuButton({
 export function StartStoryButton({
   children,
   onStart,
+  ...rest
 }: {
   children?: React.ReactNode;
   onStart: () => void;
 }) {
   return (
-    <Button size={"lg"} onClick={onStart} className="w-30">
+    <Button size={"lg"} onClick={onStart} {...rest} className="w-30">
       <PlayIcon />
       {children || "Start"}
     </Button>
   );
 }
 
+interface PrevButtonProps extends React.ComponentProps<typeof Button> {
+  children?: React.ReactNode;
+  onPrev: () => void;
+}
+
+interface NextButtonProps extends React.ComponentProps<typeof Button> {
+  children?: React.ReactNode;
+  onNext: () => void;
+}
+
+interface RestartButtonProps extends React.ComponentProps<typeof Button> {
+  children?: React.ReactNode;
+  onRestart: () => void;
+}
+
 export function PrevButton({
   children,
   onPrev = () => {},
-}: {
-  children?: React.ReactNode;
-  onPrev: () => void;
-}) {
+  ...rest
+}: PrevButtonProps) {
   return (
     <Button
       size={"lg"}
       onClick={onPrev}
-      className="ring-1 w-30 active:translate-y-1"
+      className="ring-1 active:translate-y-1"
+      {...rest}
     >
       <StepBackIcon />
       {children || "Prev"}
@@ -61,21 +84,36 @@ export function PrevButton({
   );
 }
 
-export function ContinueButton({
+export function NextButton({
   children,
-  onContinue = () => {},
-}: {
-  children?: React.ReactNode;
-  onContinue: () => void;
-}) {
+  onNext = () => {},
+  ...rest
+}: NextButtonProps) {
   return (
     <Button
       size={"lg"}
-      onClick={onContinue}
-      className="ring-1 w-30 active:translate-y-1"
+      onClick={onNext}
+      className="ring-1 active:translate-y-1"
+      {...rest}
     >
-      {children || "Continue"}
+      {children || "Next"}
       <StepForwardIcon />
+    </Button>
+  );
+}
+
+export function RestartButton({
+  children,
+  onRestart,
+  ...rest
+}: RestartButtonProps) {
+  return (
+    <Button
+      onClick={onRestart}
+      className="w-30 active:translate-y-1 duration-200"
+      {...rest}
+    >
+      <RotateCcwIcon /> {children || "Restart"}
     </Button>
   );
 }
