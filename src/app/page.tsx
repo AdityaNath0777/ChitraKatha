@@ -1,6 +1,7 @@
 import Image from "next/image";
 import StoryCardList from "./_components/story-card-list";
 import { storiesService } from "@/lib/services/stories.service";
+import Footer from "@/components/footer";
 
 export default async function Home() {
   let stories;
@@ -38,10 +39,7 @@ export default async function Home() {
         </div>
       </main>
 
-      <footer className="row-start-2 flex gap-[24px] flex-wrap items-center justify-center">
-        Made with childhood Nostalagia 😊 by <code>Aditya Mishra</code> while
-        listening to banger songs 🎵
-      </footer>
+      <Footer />
     </div>
   );
 }
