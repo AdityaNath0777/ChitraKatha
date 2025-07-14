@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import {
   PlayIcon,
+  RotateCcwIcon,
   SquareMenuIcon,
   StepBackIcon,
   StepForwardIcon,
@@ -55,9 +56,14 @@ interface PrevButtonProps extends React.ComponentProps<typeof Button> {
   onPrev: () => void;
 }
 
-interface ContinueButtonProps extends React.ComponentProps<typeof Button> {
+interface NextButtonProps extends React.ComponentProps<typeof Button> {
   children?: React.ReactNode;
-  onContinue: () => void;
+  onNext: () => void;
+}
+
+interface RestartButtonProps extends React.ComponentProps<typeof Button> {
+  children?: React.ReactNode;
+  onRestart: () => void;
 }
 
 export function PrevButton({
@@ -69,7 +75,7 @@ export function PrevButton({
     <Button
       size={"lg"}
       onClick={onPrev}
-      className="ring-1 w-30 active:translate-y-1"
+      className="ring-1 active:translate-y-1"
       {...rest}
     >
       <StepBackIcon />
@@ -78,20 +84,36 @@ export function PrevButton({
   );
 }
 
-export function ContinueButton({
+export function NextButton({
   children,
-  onContinue = () => {},
+  onNext = () => {},
   ...rest
-}: ContinueButtonProps) {
+}: NextButtonProps) {
   return (
     <Button
       size={"lg"}
-      onClick={onContinue}
-      className="ring-1 w-30 active:translate-y-1"
+      onClick={onNext}
+      className="ring-1 active:translate-y-1"
       {...rest}
     >
-      {children || "Continue"}
+      {children || "Next"}
       <StepForwardIcon />
+    </Button>
+  );
+}
+
+export function RestartButton({
+  children,
+  onRestart,
+  ...rest
+}: RestartButtonProps) {
+  return (
+    <Button
+      onClick={onRestart}
+      className="w-30 active:translate-y-1 duration-200"
+      {...rest}
+    >
+      <RotateCcwIcon /> {children || "Restart"}
     </Button>
   );
 }
