@@ -12,11 +12,16 @@ interface SceneIntroProps {
 function SceneIntro({ story, onStart }: SceneIntroProps) {
   return (
     <>
-      <div>
+      <div className="flex flex-wrap gap-4">
         {story.characters.map((char, idx) => (
-          <span key={`char-${idx}`} className="text-9xl">
-            {char}
-          </span>
+          <>
+            <div
+              key={`character-${idx}-${char}`}
+              className="text-6xl border-b border-gray-500/40 rounded p-2 lg:text-9xl"
+            >
+              {char}
+            </div>
+          </>
         ))}
       </div>
       <div className="space-y-2">

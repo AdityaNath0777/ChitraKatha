@@ -13,7 +13,7 @@ function ChoiceBox({ choices, onChoice }: ChoiceBoxProps) {
         <li
           key={`choice-${idx}`}
           onClick={() => onChoice(choice.nextSceneId)}
-          className="text-sm lg:text-base ring-1 cursor-pointer hover:bg-gray-400/20 ring-slate-500/40 w-4/5 lg:w/2/3 px-2 py-1 rounded"
+          className="text-sm lg:text-base ring-1 cursor-pointer bg-gray-50/50 hover:bg-gray-400/20 ring-slate-500/40 w-4/5 lg:w/2/3 px-2 py-1 rounded"
         >
           {choice.text}
         </li>
