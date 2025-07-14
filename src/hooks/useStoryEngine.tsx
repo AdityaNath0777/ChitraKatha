@@ -9,7 +9,7 @@ export function useStoryEngine(story: StoryEntry) {
 
   const currentScene = story.data[sceneId];
 
-  const start = () => setSceneId("start");
+  const start = () => setSceneId(story.startSceneId);
 
   const pickChoice = (id: string) => {
     setSceneId(id);

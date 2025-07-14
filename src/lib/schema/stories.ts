@@ -8,7 +8,7 @@ export const choiceSchema = z.object({
 export const sceneSchema = z.object({
   type: z.enum(["narration", "choice", "end"]).optional(),
   background: z.string().optional(),
-  character: z.string().optional(),
+  character: z.string().optional().nullish(),
   textChunks: z.array(z.string()),
   choices: z.array(choiceSchema),
 });
